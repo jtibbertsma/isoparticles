@@ -1,53 +1,35 @@
 # Isoparticles
-
 The old particles.js library is pretty cool, but it's got a couple of problems if you want to use it in the componentDidMount method of a React component:
-
 - Everything's defined explicitly on window, so it breaks server rendering just by being imported, even if you weren't planning using it on the server. It doesn't export anything, and it pollutes the global namespace.
 - There's no way to tear down the canvas and event listeners.
 - You have to specify an asset path for the config to download. You can't just pass it a javascript object.
-
 With that said, here's the changes I'm making:
-
 - The second argument of the constructor is a config object instead of an asset url.
 - The main function `particlesJS` is now exported instead of set on window. To use:
 ```js
 import particlesJS from 'isoparticles';
-
 const destroyFunc = particlesJS(domNodeId, config);
 ```
 - The main function returns an unmount callback.
 - On the server side `particlesJS` is a noop.
-
 I'm not planning on updating the documentation below, so you're on your own.
-
-
 ## particles.js
-
 ### A lightweight JavaScript library for creating particles.
-
 ------------------------------
 ### `Demo / Generator`
-
 <a href="http://vincentgarreau.com/particles.js/" target="_blank"><img src="http://vincentgarreau.com/particles.js/assets/img/github-screen.jpg" alt="particles.js generator" /></a>
-
 Configure, export, and share your particles.js configuration on CodePen: <br />
 http://vincentgarreau.com/particles.js/
-
 CodePen demo: <br />
 http://codepen.io/VincentGarreau/pen/pnlso
-
 -------------------------------
 ### `Usage`
-
 Load particles.js and configure the particles:
-
 **index.html**
 ```html
 <div id="particles-js"></div>
-
 <script src="particles.js"></script>
 ```
-
 **app.js**
 ```javascript
 /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
@@ -55,7 +37,6 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
   console.log('callback - particles.js config loaded');
 });
 ```
-
 **particles.json**
 ```javascript
 {
@@ -169,15 +150,12 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
   "retina_detect": true
 }
 ```
-
 -------------------------------
-
 ### `Options`
-
 key | option type / notes | example
 ----|---------|------|------
 `particles.number.value` | number | `40`
-`particles.number.density.enable` | boolean | `true` / `false` 
+`particles.number.density.enable` | boolean | `true` / `false`
 `particles.number.density.value_area` | number | `800`
 `particles.color.value` | HEX (string) <br /> RGB (object) <br /> HSL (object) <br /> array selection (HEX) <br /> random (string) | `"#b61924"` <br /> `{r:182, g:25, b:36}` <br />  `{h:356, s:76, l:41}` <br /> `["#b61924", "#333333", "999999"]` <br /> `"random"`
 `particles.shape.type` | string <br /> array selection | `"circle"` <br /> `"edge"` <br /> `"triangle"` <br /> `"polygon"` <br /> `"star"` <br /> `"image"` <br /> `["circle", "triangle", "image"]`
@@ -188,14 +166,14 @@ key | option type / notes | example
 `particles.shape.image.width` | number <br />(for aspect ratio) | `100`
 `particles.shape.image.height` | number <br />(for aspect ratio) | `100`
 `particles.opacity.value` | number (0 to 1) | `0.75`
-`particles.opacity.random` | boolean | `true` / `false` 
-`particles.opacity.anim.enable` | boolean | `true` / `false` 
+`particles.opacity.random` | boolean | `true` / `false`
+`particles.opacity.anim.enable` | boolean | `true` / `false`
 `particles.opacity.anim.speed` | number | `3`
 `particles.opacity.anim.opacity_min` | number (0 to 1) | `0.25`
 `particles.opacity.anim.sync` | boolean | `true` / `false`
 `particles.size.value` | number | `20`
-`particles.size.random` | boolean | `true` / `false` 
-`particles.size.anim.enable` | boolean | `true` / `false` 
+`particles.size.random` | boolean | `true` / `false`
+`particles.size.anim.enable` | boolean | `true` / `false`
 `particles.size.anim.speed` | number | `3`
 `particles.size.anim.size_min` | number | `0.25`
 `particles.size.anim.sync` | boolean | `true` / `false`
@@ -230,37 +208,27 @@ key | option type / notes | example
 `interactivity.events.modes.push.particles_nb` | number | `4`
 `interactivity.events.modes.push.particles_nb` | number | `4`
 `retina_detect` | boolean | `true` / `false`
-
 -------------------------------
-
 ### `Packages install`
-
 ##### ***npm***
 https://www.npmjs.com/package/particles.js
 ```
 npm install particles.js
 ```
-
 ##### ***Bower***
 ```
 bower install particles.js --save
 ```
-
 ##### ***Rails Assets***
 ```
 gem 'rails-assets-particles.js'
 ```
-
 ##### ***Meteor***
 https://atmospherejs.com/newswim/particles
 ```
 meteor add newswim:particles
 ```
-
 -------------------------------
-
 ### `Hosting / CDN`
-
 ***Please use this host or your own to load particles.js on your projects***
-
 http://www.jsdelivr.com/#!particles.js

@@ -1,6 +1,6 @@
 {
   "name": "isoparticles",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "A lightweight JavaScript library for creating particles",
   "homepage": "https://github.com/jtibbertsma/isoparticles",
   "scripts": {

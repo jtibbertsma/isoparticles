@@ -1,18 +1,14 @@
 # Isoparticles
-The old particles.js library is pretty cool, but it's got a couple of problems if you want to use it in the componentDidMount method of a React component:
-- Everything's defined explicitly on window, so it breaks server rendering just by being imported, even if you weren't planning using it on the server. It doesn't export anything, and it pollutes the global namespace.
-- There's no way to tear down the canvas and event listeners.
-- You have to specify an asset path for the config to download. You can't just pass it a javascript object.
-With that said, here's the changes I'm making:
-- The second argument of the constructor is a config object instead of an asset url.
-- The main function `particlesJS` is now exported instead of set on window. To use:
-```js
-import particlesJS from 'isoparticles';
-const destroyFunc = particlesJS(domNodeId, config);
-```
-- The main function returns an unmount callback.
-- On the server side `particlesJS` is a noop.
-I'm not planning on updating the documentation below, so you're on your own.
+The old particles.js library is pretty cool, but I want to be able to call it from in the componentWillMount method in a React component. The changes I made:
+
+- You must use npm.
+- The module now exports the particlesJS function instead of defining it on window.
+- particlesJS returns a pJS object.
+- particlesJS.load passes a pJS object to the callback.
+- No state gets put in window.
+- You can import this on the server and you won't get an exception, because window isn't accessed on the top level anymore. The server module exports a noop.
+
+
 ## particles.js
 ### A lightweight JavaScript library for creating particles.
 ------------------------------
